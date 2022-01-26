@@ -1,25 +1,42 @@
-﻿#include <iostream>
-#include <climits>
-
+#include <iostream>
 int main()
 {
-    int Q1, P1, Q2, P2, A;
+    int Q1, P1, Q2, P2, A, Amin;
     std::cin >> Q1 >> P1 >> Q2 >> P2 >> A;
-    int num = A / Q1 + (A % Q1 != 0);
-    int maxx = INT_MAX;
-    for (int i = 0; i < num; i++)
+    Amin = INT_MAX;
+    if (Q1 < Q2)
     {
-        int a = A - i * Q1;
-        auto m = 0;
-        if (a <= 0) {
-            m = 0 + i * P1;
-        }
-        else {
-            m = (a / Q2 + (a % Q2 != 0)) * P2 + i * P1;
-        }
-        if (m < maxx) {
-            maxx = m;
-        }
+        std::swap(Q1, Q2);
+        std::swap(P1, P2);
     }
-    std::cout << maxx << std::endl;
+    int count = 0, B = A;
+    while (B > 0)
+    {
+        count++;
+        B -= Q1;
+    }
+    int C = count, D = 0;
+    int summ = 0;
+    while (C != 0)
+    {   
+        summ = C * P1 + D * P2;
+        if (Amin > summ)
+        {
+            Amin = summ;
+        }
+        C--;
+        while (C * Q1 + D * Q2 < A)
+            D++;
+    }
+    int x = 0; 
+    while (x * Q2 < A)
+        x++;
+    if (Amin > x * P2)
+    {
+        Amin = x * P2;
+    }
+    std::cout << Amin;
 }
+
+
+
