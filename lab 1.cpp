@@ -17,7 +17,7 @@ int main()
     }
     int C = count, D = 0;
     int summ = 0;
-    while (C != 0)
+    for (; ;)
     {   
         summ = C * P1 + D * P2;
         if (Amin > summ)
