@@ -3,7 +3,7 @@
 #include <algorithm>
 using namespace std;
 
-int sumOfNums(int n) {
+/*int xumOfNumx(int n) {
     if (n < 10) {
         return n;
     }
@@ -21,7 +21,7 @@ int sumOfNums(int n) {
     }
 }
 
-int multiplicationOfNums(int n) {
+int multiplicationOfNumx(int n) {
     if (n < 10) {
         return n;
     }
@@ -38,32 +38,47 @@ int multiplicationOfNums(int n) {
         return 0;
     }
 
-}
+}*/
+int main()
+{
+    int sumOfNums = 0;
+    int multiplicationOfNums = 1;
+    int x, data;
+    vector<int> v1{ 189, 99, 75, 346, 43 };
 
-int main() {
-    vector<int> v1;
-    int n, x;
-    cout << "Enter the size of the vector: ";
-    cin >> n;
-    cout << "Enter vector values:\n";
-    for (int j = 0; j < n; j++) {
-        cin >> x;
-        v1.push_back(x);
-    for (int j = 0; j < v1.size(); j++) {
-        if (sumOfNums(v1[j]) == 18) {
-            v1.erase(v1.begin() + j);
-            }
+    for (int i = 0; i < v1.size(); i++)
+    {
+        x = v1[i];
+        sumOfNums = 0;
+        while (x > 0)
+        {
+            data = x % 10;
+            x /= 10;
+            sumOfNums += data;
+        }
+
+        if (sumOfNums == 18) {
+            v1.erase(v1.begin() + i);
         }
     }
     int size = v1.size();
-    for (int j = 0; j < size; j++) {
-        if (multiplicationOfNums(v1[j]) % 35 == 0) {
-            v1.insert(v1.end(), v1[j]);
+    for (int i = 0; i < size; i++) {
+        x = vec[i];
+        multiplicationOfNums = 1;
+        while (x > 0)
+        {
+            data = x % 10;
+            x /= 10;
+            multiplicationOfNums *= data;
+        }
+
+        if (multiplicationOfNums == 35)
+        {
+            v1.insert(v1.end(), v1[i]);
         }
     }
     sort(v1.begin(), v1.end());
     for (int i = 0; i < v1.size(); i++)
-        cout << v1[i] << " ";
+        cout << vec[i] << " ";
     return 0;
-
 }
