@@ -1,42 +1,21 @@
 #include <iostream>
+#include <climits>
+#include <math.h>
+
 int main()
 {
-    int Q1, P1, Q2, P2, A, Amin;
-    std::cin >> Q1 >> P1 >> Q2 >> P2 >> A;
-    Amin = INT_MAX;
-    if (Q1 < Q2)
-    {
-        std::swap(Q1, Q2);
-        std::swap(P1, P2);
-    }
-    int count = 0, B = A;
-    while (B > 0)
-    {
-        count++;
-        B -= Q1;
-    }
-    int C = count, D = 0;
-    int summ = 0;
-    for (; ;)
-    {   
-        summ = C * P1 + D * P2;
-        if (Amin > summ)
-        {
-            Amin = summ;
-        }
-        C--;
-        while (C * Q1 + D * Q2 < A)
-            D++;
-    }
-    int x = 0; 
-    while (x * Q2 < A)
-        x++;
-    if (Amin > x * P2)
-    {
-        Amin = x * P2;
-    }
-    std::cout << Amin;
-}
+	int Q1, P1, Q2, P2, A;
+	int Amin = INT_MAX;
+	std::cin >> Q1 >> P1 >> Q2 >> P2 >> A;
 
+	for (int i = 0; i <= ceil(A / Q1); i++) {
+		for (int j = 0; j <= ceil(A / Q2); j++) {
+			if ((i * Q1 + j * Q2 >= A) && (i * P1 + j * P2 < Amin) && (i * P1 + j * P2 > 0))
+				Amin = i * P1 + j * P2;
+		}
+	}
+	std::cout << Amin;
+	return 0;
+}
 
 
